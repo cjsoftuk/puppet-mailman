@@ -43,7 +43,7 @@ class mailman (
   file { '/usr/lib/mailman/Mailman/mm_cfg.py':
     content => template('mailman/mm_cfg.py.erb'),
     owner   => 'root',
-    group   => 'mailman',
+    group   => 'list',
     mode    => '0640',
     notify  => Service['mailman'],
   }

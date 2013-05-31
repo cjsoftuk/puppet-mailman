@@ -52,7 +52,7 @@ class mailman (
   # The password is immediately changed, and appears in the puppet logs,
   # so make sure unprivileged users can't read them, or change it again.
   exec { 'create_mailman_site_list':
-    require   => File['/usr/lib/mailman/Mailman/mm_cfg.py'],
+    require   => File['/etc/mailman/mm_cfg.py'],
     command   => "/usr/lib/mailman/bin/newlist -q ${mailman_site_list} ${mailman_site_list}@${default_email_host} ${uniqueid} && /usr/lib/mailman/bin/change_pw -l ${mailman_site_list}",
     creates   => "/var/lib/mailman/lists/${mailman_site_list}/config.pck",
     logoutput => true,

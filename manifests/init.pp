@@ -41,7 +41,7 @@ class mailman (
 
   # Main Mailman configuration file (well, python script)
   file { '/etc/init.d/mailman':
-    source  => 'puppet:///modules/mailman/mailman.init'),
+    source  => 'puppet:///modules/mailman/mailman.init',
     owner   => 'root',
     group   => 'root',
     mode    => '0755',

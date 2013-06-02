@@ -36,7 +36,8 @@ class mailman (
     require   => Exec['create_mailman_site_list'],
     enable    => true,
     ensure    => running,
-    hasstatus => true,
+    hasstatus => false,
+    creates   => "/var/run/mailman/mailman.pid",
   }
 
   # Main Mailman configuration file (well, python script)

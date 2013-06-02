@@ -37,7 +37,7 @@ class mailman (
     enable    => true,
     ensure    => running,
     hasstatus => false,
-    creates   => "/var/run/mailman/mailman.pid",
+    unless   => "ps aux | grep `cat /var/run/mailman/mailman.pid` | grep mailmanctl 2>/dev/null"
   }
 
   # Main Mailman configuration file (well, python script)

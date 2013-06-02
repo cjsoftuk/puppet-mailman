@@ -36,8 +36,16 @@ class mailman (
     require   => Exec['create_mailman_site_list'],
     enable    => true,
     ensure    => running,
-    hasstatus => false,
-    unless   => "bash -c 'ps aux | grep `cat /var/run/mailman/mailman.pid` | grep mailmanctl 2>/dev/null'"
+    hasstatus => true,
+  }
+
+  # Main Mailman configuration file (well, python script)
+  file { '/etc/init.d/mailman':
+    source  => 'puppet:///modules/mailman/mailman.init'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    notify  => Service['mailman'],
   }
 
   # Main Mailman configuration file (well, python script)

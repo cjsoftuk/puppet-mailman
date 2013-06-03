@@ -105,7 +105,7 @@ case "$1" in
     fi
     ;;
   status)
-    ps aux | grep mailmanctl | awk '{print $2;}' | grep `cat /var/run/mailman/mailman.pid` 2>/dev/null >/dev/null
+    ps aux | grep -v "grep" | grep "mailmanctl -s -q start" 2>/dev/null >/dev/null
     return $?
     ;;
   *)

@@ -34,7 +34,7 @@ class mailman (
   package { 'mailman': ensure => installed }
   service { 'mailman':
     require   => Exec['create_mailman_site_list'],
-    enable    => true,
+#    enable    => true,
     ensure    => running,
     hasstatus => true,
   }

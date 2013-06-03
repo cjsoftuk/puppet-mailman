@@ -34,7 +34,7 @@ class mailman (
   package { 'mailman': ensure => installed }
 #  service { 'mailman':
   exec{'mailman-startup':
-    command   => "/usr/sbin/update-rc.d mailman defaults"
+    command   => "/usr/sbin/update-rc.d mailman defaults",
     require   => Exec['create_mailman_site_list'],
 #    enable    => true,
 #    ensure    => running,

@@ -46,6 +46,11 @@ fi
 
 case "$1" in
   start)
+    $0 status
+    if [ $? -ne 0 ]; then
+        log_warning_msg "Mailman already running - not starting"
+        exit 0;
+    fi
     SITE_LIST=$( sed -rne "s/^[[:space:]]*MAILMAN_SITE_LIST[[:space:]]*=[[:space:]]*(['\"])([^'\"]+)\\1/\\2/p" /etc/mailman/mm_cfg.py )
     [ -n "$SITE_LIST" ] || SITE_LIST='mailman'
     if ! /var/lib/mailman/bin/list_lists -b | grep -q "^${SITE_LIST}$"; then

@@ -32,11 +32,13 @@ class mailman (
 
   # Main package and service it provides
   package { 'mailman': ensure => installed }
-  service { 'mailman':
+#  service { 'mailman':
+  exec{'mailman-startup':
+    command   => "/usr/sbin/update-rc.d mailman defaults"
     require   => Exec['create_mailman_site_list'],
 #    enable    => true,
-    ensure    => running,
-    hasstatus => true,
+#    ensure    => running,
+#    hasstatus => true,
   }
 
   # Main Mailman configuration file (well, python script)

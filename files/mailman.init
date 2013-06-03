@@ -47,7 +47,7 @@ fi
 case "$1" in
   start)
     $0 status
-    if [ $? -ne 0 ]; then
+    if [ $? -eq 0 ]; then
         log_warning_msg "Mailman already running - not starting"
         exit 0;
     fi

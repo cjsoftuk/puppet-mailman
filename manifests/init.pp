@@ -47,7 +47,7 @@ class mailman (
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    notify  => Service['mailman'],
+    notify  => Exec['mailman-startup'],
   }
 
   # Main Mailman configuration file (well, python script)
@@ -56,7 +56,7 @@ class mailman (
     owner   => 'root',
     group   => 'list',
     mode    => '0640',
-    notify  => Service['mailman'],
+    notify  => Exec['mailman-startup'],
   }
 
   # Create the mandatory site list.
